@@ -1,8 +1,10 @@
 # ZHENYI Ziwei
 
-[简体中文](README.md) · [Live charting demo](https://zhenyi-org.github.io/zhenyi-ziwei/) · [API reference](docs/API.md) · [Contributing](CONTRIBUTING.md)
+[简体中文](README.md) · [Try ZHENYI online](https://www.zhenyi.org/) · [Open-source charting demo](https://zhenyi-org.github.io/zhenyi-ziwei/) · [API reference](docs/API.md) · [Contributing](CONTRIBUTING.md)
 
-**An open-source Zi Wei Dou Shu charting engine you can inspect, test, and self-host.** The repository contains its astronomical calendar, true-solar-time correction, star placement, transformations, patterns, fortune cycles, static web interface, and Node.js API. It has no third-party npm runtime dependencies.
+**An open-source Zi Wei Dou Shu charting engine informed by Ni Haixia's *Tian Ji* teaching approach.** Enter a birth date, time, and place; the program corrects for true solar time, then lays out the twelve palaces, stars, birth-year transformations, patterns, and fortune cycles. The calendar, rules, interface, and API are all here to inspect and run.
+
+**Don't want to deploy it? [Try ZHENYI online](https://www.zhenyi.org/).** You can also open the [open-source charting demo](https://zhenyi-org.github.io/zhenyi-ziwei/) to see this repository's static interface.
 
 ![Screenshot of the ZHENYI Ziwei charting interface](docs/assets/ziwei-demo.png)
 
@@ -35,3 +37,9 @@ The engine has automated checks for calendar dates, astronomical examples, a doc
 The repository includes the engine, interface, API, interpretation rules, and tests. The ordinary browser interface can export chart data as JSON; exporting PNG loads `html2canvas` from a CDN on demand. **AI reading currently requires a host page that provides `window.claude` and is hidden on ordinary static hosting.** No model weights or standalone AI service are included.
 
 Code is available under the [MIT License](LICENSE). Contributions with reproducible charts and boundary cases are welcome; see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Star History
+
+The project is new, so the chart starts at zero. A reproducible chart discrepancy is especially useful; if you like the work, a Star also helps others find it.
+
+[![GitHub Star History](https://api.star-history.com/svg?repos=ZHENYI-ORG/zhenyi-ziwei&type=Date)](https://star-history.com/#ZHENYI-ORG/zhenyi-ziwei&Date)
