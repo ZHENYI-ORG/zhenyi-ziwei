@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>真一紫微 · 紫微斗数排盘</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;500;700&display=swap">
+<style>
+/*@CSS@*/
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <span class="brand-mark">真一紫微</span>
+    <span class="brand-sub">依倪海厦《天纪》体系的紫微斗数排盘</span>
+  </div>
+  <div class="top-actions">
+    <button class="icon-btn" id="btnSaved" type="button">命例</button>
+    <button class="icon-btn" id="btnSettings" type="button">校时与显示</button>
+    <button class="icon-btn" id="btnTheme" type="button" aria-label="切换明暗">明暗</button>
+  </div>
+</header>
+
+<main class="stage">
+  <div class="board-col">
+    <div id="mobileFormSlot"></div>
+    <div class="board" id="board" aria-label="紫微斗数命盘">
+      <div class="heart" id="heart"></div>
+      <svg class="lines" id="lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"></svg>
+    </div>
+    <div class="notices" id="notices"></div>
+    <nav class="timeline" id="timeline" aria-label="运限" hidden></nav>
+  </div>
+
+  <aside class="reading" id="reading" aria-label="解盘">
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div class="panel" id="panel" role="tabpanel"></div>
+  </aside>
+</main>
+
+<template id="formTpl">
+  <form class="birth" id="birthForm" novalidate>
+    <h1>起一张命盘</h1>
+    <p class="lede">输入出生资料，按出生地经度与均时差校正为真太阳时后安星。</p>
+    <div class="row">
+      <label class="k" for="fName">姓名</label>
+      <input class="field" id="fName" name="name" placeholder="可不填" maxlength="16" autocomplete="off">
+      <div class="seg" role="group" aria-label="性别">
+        <button type="button" data-gender="male" aria-pressed="true">男</button>
+        <button type="button" data-gender="female" aria-pressed="false">女</button>
+      </div>
+    </div>
+    <div class="row">
+      <span class="k" style="flex:0 0 3.2em;font-size:13px;color:var(--ink-2)">历法</span>
+      <div class="seg" role="group" aria-label="历法">
+        <button type="button" data-cal="solar" aria-pressed="true">公历</button>
+        <button type="button" data-cal="lunar" aria-pressed="false">农历</button>
+      </div>
+      <label class="checkline" id="leapWrap" hidden><input type="checkbox" id="fLeap"> 闰月</label>
+    </div>
+    <div class="row">
+      <label class="k" for="fYear">日期</label>
+      <div class="trio">
+        <select class="field" id="fYear" aria-label="年"></select>
+        <select class="field" id="fMonth" aria-label="月"></select>
+        <select class="field" id="fDay" aria-label="日"></select>
+      </div>
+    </div>
+    <div class="row" id="rowClock">
+      <label class="k" for="fTime">时间</label>
+      <input class="field" type="time" id="fTime" value="12:00" required>
+      <button type="button" class="link" id="toBranch">只知时辰</button>
+    </div>
+    <div class="row" id="rowBranch" hidden>
+      <label class="k" for="fBranch">时辰</label>
+      <select class="field" id="fBranch"></select>
+      <button type="button" class="link" id="toClock">填精确时间</button>
+    </div>
+    <div class="row">
+      <label class="k" for="fPlace">出生地</label>
+      <input class="field" id="fPlace" list="cityList" placeholder="输入城市，如 上海" autocomplete="off">
+      <datalist id="cityList"></datalist>
+    </div>
+    <p class="lon-note" id="lonNote">未选城市时按东经 120° 计算</p>
+    <p class="form-err" id="formErr" role="alert"></p>
+    <button class="go" type="submit">起盘</button>
+  </form>
+</template>
+
+<dialog id="dlgSettings" aria-labelledby="setTitle">
+  <div class="dlg-head"><h2 id="setTitle">校时与显示</h2><button class="ghost-btn" data-close type="button">完成</button></div>
+  <div class="dlg-body">
+    <div class="set">
+      <label for="sLon">经度</label>
+      <input class="field" id="sLon" type="number" step="0.01" min="-180" max="180" placeholder="东经为正，如 121.47">
+      <label for="sTz">时区</label>
+      <select class="field" id="sTz"></select>
+      <label for="sDst">夏令时</label>
+      <select class="field" id="sDst"><option value="auto">自动（中国 1986–1991）</option><option value="on">已含夏令时，减 1 小时</option><option value="off">不调整</option></select>
+      <label for="sTrue">真太阳时</label>
+      <select class="field" id="sTrue"><option value="full">经度时差 + 均时差</option><option value="lon">只做经度时差</option><option value="off">不校正，用钟表时间</option></select>
+      <label for="sZi">23 点后</label>
+      <select class="field" id="sZi"><option value="next">算次日子时（子初换日）</option><option value="same">仍算当日（晚子时不换日）</option></select>
+      <label for="sLeap">闰月</label>
+      <select class="field" id="sLeap"><option value="split">前十五日作本月，后十五日作下月</option><option value="current">全作本月</option><option value="next">全作下月</option></select>
+      <label for="sYear">年界</label>
+      <select class="field" id="sYear"><option value="lunar">正月初一</option><option value="lichun">立春</option></select>
+    </div>
+    <p class="set-note">以上设置改动后会立即重排当前命盘。经度在选择城市后自动填入，也可手动修改。</p>
+    <div class="set">
+      <label for="vMinor">杂曜</label>
+      <select class="field" id="vMinor"><option value="core">精简（鸾喜刑姚）</option><option value="all">全部杂曜</option><option value="none">不显示</option></select>
+      <label for="vGods">神煞</label>
+      <select class="field" id="vGods"><option value="on">显示长生、博士十二神</option><option value="off">不显示</option></select>
+      <label for="vFlowHua">运限四化</label>
+      <select class="field" id="vFlowHua"><option value="off">不显示（倪师：四化固定）</option><option value="on">显示大限、流年四化作参考</option></select>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="dlgSaved" aria-labelledby="savedTitle">
+  <div class="dlg-head"><h2 id="savedTitle">命例</h2><button class="ghost-btn" data-close type="button">关闭</button></div>
+  <div class="dlg-body"><ul class="saved" id="savedList"></ul></div>
+</dialog>
+
+<script>
+/*@JS@*/
+</script>
+</body>
+</html>

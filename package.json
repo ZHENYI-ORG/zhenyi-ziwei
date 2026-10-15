@@ -1,0 +1,14 @@
+{
+  "name": "zhenyi-ziwei",
+  "version": "3.0.0",
+  "private": true,
+  "license": "MIT",
+  "description": "真一紫微斗数排盘：自研天文历法 + 排盘引擎 + 网站 + 兼容旧版的 API",
+  "scripts": {
+    "build": "node build.js",
+    "start": "node server.js",
+    "test": "node test/engine.test.js && node test/api.test.js",
+    "gen:lunar": "node tools/gen-lunar-table.js"
+  },
+  "engines": { "node": ">=18" }
+}

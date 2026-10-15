@@ -1,0 +1,29 @@
+name: 排盘差异 / Bug report
+description: 报告可以复现的历法、排盘或界面问题
+title: "[Bug] "
+labels: [bug]
+body:
+  - type: textarea
+    id: observed
+    attributes:
+      label: 实际结果
+      description: 请勿提交未经授权的真人出生信息。
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望结果与参考依据
+    validations:
+      required: true
+  - type: textarea
+    id: input
+    attributes:
+      label: 可复现输入
+      description: 日期、时间、经度、性别、闰月、晚子时等设置；优先使用虚构数据。
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: 版本或提交号
