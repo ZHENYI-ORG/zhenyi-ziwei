@@ -1,10 +1,10 @@
 # 真一紫微 · ZHENYI Ziwei
 
-[English](README.en.md) · [真一官网体验](https://www.zhenyi.org/) · [开源版排盘演示](https://zhenyi-org.github.io/zhenyi-ziwei/) · [API 文档](docs/API.md) · [参与开发](CONTRIBUTING.md)
+[English](README.en.md) · [真一官网体验](https://www.zhenyi.org/) · [API 文档](docs/API.md) · [参与开发](CONTRIBUTING.md)
 
 **参考倪海厦《天纪》读盘体系的开源紫微斗数排盘引擎。** 输入出生日期、时间和地点，程序先校正真太阳时，再安十二宫、星曜与生年四化，接着展示格局和运限。天文历法、排盘规则、网页和 API 都在仓库里，可以逐段读，也可以自己跑一遍。
 
-**不想部署？[去真一官网线上体验](https://www.zhenyi.org/)。** 想先看看开源版的界面，也可以直接打开[排盘演示](https://zhenyi-org.github.io/zhenyi-ziwei/)。
+**不想部署？[去真一官网线上体验](https://www.zhenyi.org/)。**
 
 ![真一紫微命盘界面，示例日期为 2000 年 8 月 16 日](docs/assets/ziwei-demo.png)
 
@@ -40,7 +40,7 @@ npm test
 npm run build
 ```
 
-打开 `dist/index.html` 就能使用网页。[开源版演示](https://zhenyi-org.github.io/zhenyi-ziwei/)运行的也是这份静态页面。想直接使用真一线上产品，可以去[真一官网](https://www.zhenyi.org/)。
+打开 `dist/index.html` 就能使用网页。想直接使用真一线上产品，可以去[真一官网](https://www.zhenyi.org/)。
 
 需要给自己的站点接排盘服务时，再启动 API：
 

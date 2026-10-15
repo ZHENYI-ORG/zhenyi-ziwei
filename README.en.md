@@ -1,10 +1,10 @@
 # ZHENYI Ziwei
 
-[简体中文](README.md) · [Try ZHENYI online](https://www.zhenyi.org/) · [Open-source charting demo](https://zhenyi-org.github.io/zhenyi-ziwei/) · [API reference](docs/API.md) · [Contributing](CONTRIBUTING.md)
+[简体中文](README.md) · [Try ZHENYI online](https://www.zhenyi.org/) · [API reference](docs/API.md) · [Contributing](CONTRIBUTING.md)
 
 **An open-source Zi Wei Dou Shu charting engine informed by Ni Haixia's *Tian Ji* teaching approach.** Enter a birth date, time, and place; the program corrects for true solar time, then lays out the twelve palaces, stars, birth-year transformations, patterns, and fortune cycles. The calendar, rules, interface, and API are all here to inspect and run.
 
-**Don't want to deploy it? [Try ZHENYI online](https://www.zhenyi.org/).** You can also open the [open-source charting demo](https://zhenyi-org.github.io/zhenyi-ziwei/) to see this repository's static interface.
+**Don't want to deploy it? [Try ZHENYI online](https://www.zhenyi.org/).**
 
 ![Screenshot of the ZHENYI Ziwei charting interface](docs/assets/ziwei-demo.png)
 
